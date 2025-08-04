@@ -1,0 +1,17 @@
+[package]
+name = "license-api"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+axum = "0.8.4"
+tokio = {version = "1.47.1", features = ["rt-multi-thread"]}
+tracing-subscriber = {version = "0.3.19", features = ["env-filter"]}
+tracing = "0.1.41"
+diesel = {version = "2.2.12", features = ["chrono"]}
+diesel-async = {version = "0.6.1", features = ["postgres", "bb8"]}
+serde = {version = "1.0.219", features = ["derive"]}
+bb8 = "0.9.0"
+
+dotenvy = "0.15.7"
+chrono = {version = "0.4.41", features = ["serde"]}
