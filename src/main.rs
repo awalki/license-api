@@ -101,11 +101,15 @@ async fn create_key(
     headers: HeaderMap,
     Json(new_key): Json<NewLicenseKey>,
 ) -> Result<Json<LicenseKey>, (StatusCode, String)> {
-    if let Some(api_key) = headers.get("x-api-key") {
-        if env::var("API_KEY").unwrap() != api_key.to_str().unwrap() {
-            return Err((StatusCode::UNAUTHORIZED, "unauthorized".into()));
-        }
-    }
+    let expected_key = env::var("API_KEY")
+        .map_err(internal_error)?;
+
+    let _ = headers
+        .get("x-api-key")
+        .and_then(|hv| hv.to_str().ok())
+        .filter(|&v| v == expected_key)
+        .ok_or((StatusCode::UNAUTHORIZED, "unauthorized".into()))?;
+
     let mut conn = pool.get().await.map_err(internal_error)?;
 
     let res = diesel::insert_into(license_keys::table())
