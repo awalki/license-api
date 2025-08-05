@@ -15,3 +15,4 @@ bb8 = "0.9.0"
 
 dotenvy = "0.15.7"
 chrono = {version = "0.4.41", features = ["serde"]}
+tower-http = { version = "0.6.6", features = ["trace"] }

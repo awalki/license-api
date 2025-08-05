@@ -19,7 +19,7 @@ cargo run --release
 ## Client libraries
 
 - [Python](https://github.com/awalki/license-api-py)
-- [Rust](https://github.com/awalki/license-api/rs)
+- [Rust](https://github.com/awalki/license-api-rs)
 - JavaScript [in development]
 - C# [in development]
 - C++ [in development]

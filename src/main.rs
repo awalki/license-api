@@ -5,13 +5,7 @@ use crate::models::{LicenseKey, NewLicenseKey};
 use crate::schema::license_keys::dsl::license_keys;
 use crate::schema::license_keys::{hwid, is_activated, key};
 use axum::http::HeaderMap;
-use axum::{
-    Router,
-    extract::State,
-    http::StatusCode,
-    response::Json,
-    routing::{post},
-};
+use axum::{Router, extract::State, http::StatusCode, response::Json, routing::post};
 use diesel::associations::HasTable;
 use diesel::prelude::*;
 use diesel_async::{
@@ -20,6 +14,7 @@ use diesel_async::{
 use serde::{Deserialize, Serialize};
 use std::env;
 use tokio::net::TcpListener;
+use tower_http::trace::TraceLayer;
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
 
 type Pool = bb8::Pool<AsyncDieselConnectionManager<AsyncPgConnection>>;
@@ -48,6 +43,7 @@ async fn main() {
     let app = Router::new()
         .route("/license/auth", post(auth))
         .route("/license/create", post(create_key))
+        .layer(TraceLayer::new_for_http())
         .with_state(pool);
 
     let listener = TcpListener::bind("127.0.0.1:3000").await.unwrap();
