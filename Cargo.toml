@@ -1,18 +1,21 @@
-[package]
-name = "license-api"
-version = "0.1.0"
-edition = "2024"
+[workspace]
+members = [
+    "api",
+    "core",
+    "storage",
+    "common"
+]
+resolver = "3"
 
-[dependencies]
-axum = "0.8.4"
-tokio = {version = "1.47.1", features = ["rt-multi-thread"]}
-tracing-subscriber = {version = "0.3.19", features = ["env-filter"]}
+[workspace.dependencies]
+core = {path = "core"}
+storage = {path = "storage"}
+common = {path = "common"}
+
+anyhow = "1.0.98"
+async-trait = "0.1.88"
+http = "1.3.1"
 tracing = "0.1.41"
-diesel = {version = "2.2.12", features = ["chrono"]}
+serde = { version = "1.0.219", features = ["derive"] }
 diesel-async = {version = "0.6.1", features = ["postgres", "bb8"]}
-serde = {version = "1.0.219", features = ["derive"]}
-bb8 = "0.9.0"
-
-dotenvy = "0.15.7"
-chrono = {version = "0.4.41", features = ["serde"]}
-tower-http = { version = "0.6.6", features = ["trace"] }
+diesel = { version = "2.2.12", features = ["chrono", "ipnet-address"] }

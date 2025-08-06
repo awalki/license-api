@@ -1,0 +1,15 @@
+[package]
+name = "api"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+storage = { workspace = true }
+common = { workspace = true }
+core = { workspace = true }
+tracing = { workspace = true }
+
+tokio = { version = "1.47.1", features = ["rt-multi-thread"] }
+dotenvy = "0.15.7"
+axum = "0.8.4"
+tower-http = { version = "0.6.6", features = ["trace"] }

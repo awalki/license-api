@@ -1,0 +1,11 @@
+[package]
+name = "common"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = {workspace = true}
+http = {workspace = true}
+
+tracing-subscriber = {version = "0.3.19", features = ["env-filter"]}
+fastrand = "2.3.0"

@@ -1,0 +1,14 @@
+[package]
+name = "core"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+storage = {workspace = true}
+async-trait = {workspace = true}
+anyhow = {workspace = true}
+common = {workspace = true}
+http = {workspace = true}
+serde = {workspace = true}
+diesel-async = {workspace = true}
+diesel = {workspace = true}
