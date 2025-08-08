@@ -6,7 +6,7 @@ diesel::table! {
         key -> Text,
         expires -> Timestamp,
         is_activated -> Bool,
-        banned -> Nullable<Bool>,
+        banned -> Bool,
         hwid -> Nullable<Text>,
     }
 }

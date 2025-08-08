@@ -12,7 +12,7 @@ pub struct LicenseKey {
     pub key: String,
     pub expires: NaiveDateTime,
     pub is_activated: bool,
-    pub banned: Option<bool>,
+    pub banned: bool,
     pub hwid: Option<String>,
 }
 
@@ -29,16 +29,13 @@ pub struct NewLicenseKey {
 #[diesel(belongs_to(LicenseKey, foreign_key = license_id))]
 pub struct UserInfo {
     pub license_id: i32,
-    pub username: String,
     pub first_login: String,
     pub last_login: String,
-    pub last_session_time: Option<NaiveDateTime>,
     pub last_ip: IpNet,
     pub os_name: Option<String>,
     pub os_version: Option<String>,
     pub cpu_info: Option<String>,
     pub cpu_cores: Option<i32>,
-    pub created_at: NaiveDateTime,
     pub notes: Option<String>,
 }
 
@@ -46,10 +43,8 @@ pub struct UserInfo {
 #[diesel(table_name = user_info)]
 pub struct NewUserInfo {
     pub license_id: i32,
-    pub username: String,
     pub first_login: String,
     pub last_login: String,
-    pub last_session_time: Option<NaiveDateTime>,
     pub last_ip: IpNet,
     pub os_name: Option<String>,
     pub os_version: Option<String>,

@@ -3,7 +3,7 @@ use axum::extract::State;
 use axum::http::{HeaderMap, StatusCode};
 use common::auth::validate_api_key;
 use core::models::*;
-use core::services::LicenseService;
+use core::license::LicenseService;
 use std::sync::Arc;
 use storage::models::{LicenseKey, NewLicenseKey};
 use storage::repo::DatabaseRepo;

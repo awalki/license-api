@@ -2,12 +2,13 @@ mod routes;
 
 use crate::routes::licenses::{auth, generate_license};
 use axum::Router;
-use axum::routing::post;
-use core::services::LicenseService;
+use axum::routing::{any, post};
+use core::license::LicenseService;
 use std::sync::Arc;
 use storage::repo::DatabaseRepo;
 use tokio::net::TcpListener;
 use tower_http::trace::TraceLayer;
+// use crate::routes::ws::ws_handler;
 
 #[tokio::main]
 async fn main() {
@@ -22,6 +23,7 @@ async fn main() {
     let app = Router::new()
         .route("/license/auth", post(auth))
         .route("/license/generate", post(generate_license))
+        // .route("/license/ws/:key/:hwid", any(ws_handler))
         .layer(TraceLayer::new_for_http())
         .with_state(license_service);
 

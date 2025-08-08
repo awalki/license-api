@@ -12,3 +12,6 @@ http = {workspace = true}
 serde = {workspace = true}
 diesel-async = {workspace = true}
 diesel = {workspace = true}
+axum = {workspace = true}
+
+futures-util = "0.3.31"
